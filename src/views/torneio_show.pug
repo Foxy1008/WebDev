@@ -1,0 +1,17 @@
+extends layout 
+
+   
+block content
+    div.card 
+        h3 #{title} #{torneio.nome}
+
+        div
+           
+            p #{torneio.descricao}
+            p #{torneio.jogo}
+            p #{torneio.premiacao}
+            p #{torneio.id}
+            a(href=`/torneio/`+torneio.id+`/update`) Atualizar
+            br
+            if((torneio.chaveId == null))
+                a(href=`/torneio/`+torneio.id+`/gerar_chave`) Criar Chaves

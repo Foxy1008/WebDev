@@ -1,0 +1,77 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:Foxy1008@localhost:3306/FightClub"
+}
+
+model User {
+    id        Int      @id @default(autoincrement())
+    nick      String   @unique
+    email     String   @unique
+    senha     String
+    name      String
+    perfil    Perfil   @relation(fields: [perfilId], references: [id])
+    perfilId  Int 
+    torneio   Torneio?  @relation("vencedor")
+    partidaUsuario1   Partida?  @relation("usuario1")
+    partidaUsuario2   Partida?  @relation("usuario2")
+    vencedor  Partida? @relation("vencedor")
+    torneios   Torneio[] @relation("userTorneio")
+  }
+
+  model Perfil {
+    id        Int      @id @default(autoincrement())
+    name      String   @unique
+    user      User[]
+  }
+
+  model Partida {
+    id        Int      @id @default(autoincrement())
+    user1     User?     @relation("usuario1",fields: [user1Id], references: [id])
+    user2     User?     @relation("usuario2",fields: [user2Id], references: [id])
+    user1Id   Int?      @unique  
+    user2Id   Int?      @unique  
+    pontuacaoUser1  Int
+    pontuacaoUser2  Int
+    vencedor  User?   @relation("vencedor",fields: [userVencedorId], references: [id])
+    userVencedorId  Int?      @unique  
+    chavePartida1     Chave?   @relation("partida1")
+    chavePartida2     Chave?   @relation("partida2")
+  }
+
+  model Chave {
+    id            Int      @id @default(autoincrement())
+    partida1      Partida  @relation("partida1",fields: [partida1Id], references: [id])
+    partida2      Partida?  @relation("partida2",fields: [partida2Id], references: [id])
+    partida1Id    Int    @unique  
+    partida2Id    Int?    @unique
+    chaveAnterior         Chave?   @relation("ChaveRelacionada",fields: [chaveAnteriorId], references: [id])
+    chavePosterior         Chave?   @relation("ChaveRelacionada")
+    chaveAnteriorId Int?  @unique  
+    torneio       Torneio?
+  }
+
+  model Torneio {
+    id          Int      @id @default(autoincrement())
+    nome        String
+    descricao   String
+    jogo        String
+    premiacao   String
+    chave       Chave?  @relation(fields: [chaveId], references: [id])
+    chaveId     Int?     @unique
+    userVencedor User?   @relation("vencedor", fields: [userId], references: [id])
+    userId      Int?     @unique
+    usuarios    User[] @relation("userTorneio")
+  }
+
+  
+

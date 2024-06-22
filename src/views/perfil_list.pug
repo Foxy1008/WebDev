@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  h1= title
+  if perfils.length
+    ul
+      each perfil in perfils
+        li
+            |  #{perfil.name}
+  
+            
+
+  else
+    p nao existem perfils.

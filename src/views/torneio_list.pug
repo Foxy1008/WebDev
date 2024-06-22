@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+  a(href='/torneio/select') Escolher torneio
+  if torneios.length
+    table.table.table-striped
+      thead
+        tr
+          th Nome
+          th Descrição
+          th Jogo
+          th Premiação
+      tbody
+        each torneio in torneios
+          tr
+            td= torneio.nome
+            td= torneio.descricao
+            td= torneio.jogo
+            td= torneio.premiacao
+  else
+    p Não existem torneios.

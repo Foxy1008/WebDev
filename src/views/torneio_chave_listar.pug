@@ -1,0 +1,17 @@
+extends layout
+  
+block content
+  h1= title
+  h3= torneioChave.contagem
+  if torneioChave.chaves.length == 1 && torneioChave.contagem == 2
+    a(href=`/torneio/`+torneioChave.id+`/gerar_matchup`) Gerar Matchups
+  else if torneioChave.chaves.length * 4 == torneioChave.contagem 
+    a(href=`/torneio/`+torneioChave.id+`/gerar_matchup`) Gerar Matchups
+  if torneioChave.chaves.length
+    ul
+      each chave in torneioChave.chaves
+        li
+            |  (#{chave.partida1Id})
+            
+  else
+    p nao existem chaves.

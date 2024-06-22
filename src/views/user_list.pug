@@ -1,0 +1,19 @@
+extends layout
+
+block content
+  h1= title
+  if usuarios.length
+    table.table.table-striped
+      thead
+        tr
+          th Apelido
+          th Nome Completo
+          th Email
+      tbody
+        each user in usuarios
+          tr
+            td= user.nick
+            td= user.name
+            td= user.email
+  else
+    p Não existem usuários.

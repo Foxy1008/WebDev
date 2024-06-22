@@ -1,0 +1,14 @@
+extends layout 
+
+   
+block content
+    div.card 
+        h1 #{title}
+
+        form(method='POST')
+            div.form-group
+                label(for='torneioId') Escolha uma opção:
+                select(name='torneioId' id='torneioId' required)
+                    each torneio in torneios
+                        option(value=torneio.id)= torneio.nome
+            button.btn.btn-primary(type='submit') Submit

@@ -1,0 +1,17 @@
+extends layout 
+
+   
+block content
+    div.card 
+        h1 #{title}
+
+        form(method='POST')
+            div.form-group
+                label(for='quantidade') Digite a quantidade de chaves:
+                input#quantidade.form-control(type='number', placeholder='1,2...' name='quantidade' required)
+                input#nome.form-control(type='hidden', placeholder='PLAYER, ADM...' name='nome' required value=torneio.nome)
+                input#descricao.form-control(type='hidden', placeholder='PLAYER, ADM...' name='descricao' required value=torneio.descricao)
+                input#jogo.form-control(type='hidden', placeholder='PLAYER, ADM...' name='jogo' required value=torneio.jogo)
+                input#premiacao.form-control(type='hidden', placeholder='PLAYER, ADM...' name='premiacao' required value=torneio.premiacao)
+                input#id.form-control(type='hidden', placeholder='PLAYER, ADM...' name='id' required value=torneio.id)
+            button.btn.btn-primary(type='submit') Submit

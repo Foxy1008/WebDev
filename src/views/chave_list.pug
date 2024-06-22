@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  if chaves.length
+    ul
+      each chave in chaves
+        li
+            |  (#{chave.partida1Id})
+            
+  else
+    p nao existem chaves.

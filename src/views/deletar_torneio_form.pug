@@ -1,0 +1,12 @@
+extends layout 
+
+   
+block content
+    div.card 
+        h1 #{title}
+
+        form(method='POST')
+            div.form-group
+                h3 Voce tem certeza?
+                input#id.form-control(type='hidden', placeholder='PLAYER, ADM...' name='id' required value=torneio.id)
+            button.btn.btn-primary(type='submit') Submit

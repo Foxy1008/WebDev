@@ -1,0 +1,19 @@
+extends layout 
+
+   
+block content
+    div.card 
+        h1 #{title}
+
+        form(method='POST')
+            div.form-group
+                label(for='nome') Nome Completo:
+                input#nome.form-control(type='text', placeholder='PLAYER, ADM...' name='nome' required value=torneio.nome)
+                label(for='descricao') Descrição:
+                input#descricao.form-control(type='text', placeholder='PLAYER, ADM...' name='descricao' required value=torneio.descricao)
+                label(for='jogo') Jogo:
+                input#jogo.form-control(type='text', placeholder='PLAYER, ADM...' name='jogo' required value=torneio.jogo)
+                label(for='premiacao') Premiação:
+                input#premiacao.form-control(type='text', placeholder='PLAYER, ADM...' name='premiacao' required value=torneio.premiacao)
+                input#id.form-control(type='hidden', placeholder='PLAYER, ADM...' name='id' required value=torneio.id)
+            button.btn.btn-primary(type='submit') Submit
